@@ -3716,3 +3716,9 @@ Entries:
         longer give FUCs on exchange.
   id: 397
   time: '2026-05-07T05:19:53.0000000+00:00'
+- author: NotLivyathan
+  changes:
+    - type: Tweak
+      message: Migrated StaminaSystem to SharedStaminaSystem.
+  id: 398
+  time: '2026-05-07T05:21:43.0000000+00:00'
