@@ -4438,3 +4438,11 @@ Entries:
       message: Rain lizard code optimized and trimmed.
   id: 470
   time: '2026-05-29T18:53:26.0000000+00:00'
+- author: fenndragon
+  changes:
+    - type: Fix
+      message: >-
+        Fixed issues that were preventing round from continuing, research
+        issues, and station pay
+  id: 471
+  time: '2026-05-29T19:08:08.0000000+00:00'
