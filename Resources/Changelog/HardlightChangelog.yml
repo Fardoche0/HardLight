@@ -4594,3 +4594,9 @@ Entries:
       message: Resomi can now sound like sad little birds when they die. Less exciting.
   id: 487
   time: '2026-06-09T17:59:30.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Fix
+      message: Fixed ghosts blocking ships from saving
+  id: 488
+  time: '2026-06-09T18:00:02.0000000+00:00'
