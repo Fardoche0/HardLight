@@ -4568,3 +4568,11 @@ Entries:
       message: Lights on CC now won't be all broken after the 24 hours or so
   id: 484
   time: '2026-06-09T10:58:44.0000000+00:00'
+- author: DrekkCuga
+  changes:
+    - type: Tweak
+      message: Hardlight is now the first changelog in the in-game menu.
+    - type: Fix
+      message: Discord should no longer get spammed when PRs are merged, my bad :3
+  id: 485
+  time: '2026-06-09T17:57:38.0000000+00:00'
