@@ -29,7 +29,7 @@ public sealed class PoolTestLogHandler : ILogHandler
 
     public TextWriter? ActiveContext { get; private set; }
 
-    public LogLevel? FailureLevel { get; set; } = LogLevel.Fatal;
+    public LogLevel? FailureLevel { get; set; } = LogLevel.Fatal; = LogLevel.Fatal;
 
     public PoolTestLogHandler(string? prefix)
     {
