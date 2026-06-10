@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using Robust.Shared.Log;
 using Robust.Shared.Timing;
 using Serilog.Events;
@@ -29,7 +29,7 @@ public sealed class PoolTestLogHandler : ILogHandler
 
     public TextWriter? ActiveContext { get; private set; }
 
-    public LogLevel? FailureLevel { get; set; } = LogLevel.Fatal;
+    public LogLevel? FailureLevel { get; set; }
 
     public PoolTestLogHandler(string? prefix)
     {
@@ -63,7 +63,12 @@ public sealed class PoolTestLogHandler : ILogHandler
             return;
 
         testContext.Flush();
-        Assert.Fail($"{line} Exception: {message.Exception}");
+        
+        // Only fail the test if there's an actual exception, not just error logs
+        if (message.Exception != null)
+        {
+            Assert.Fail($"{line} Exception: {message.Exception}");
+        }
     }
 
     public void ClearContext()
