@@ -185,7 +185,7 @@
       productionLength: 2
       entityProduced: MaterialWebSilk1
       hungerCost: 4
-    - type: Tag
+    - type: Tag # Hardlight
       tags:
         - SpiderCraft
 

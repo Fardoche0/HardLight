@@ -42,7 +42,7 @@ public sealed class TraitSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _sharedHandsSystem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!; // HardLight
-    [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!; // Hardlight
 
     public override void Initialize()
     {
@@ -172,6 +172,7 @@ public sealed class TraitSystem : EntitySystem
             return;
 
         // Add all components required by the prototype
+        // Hardlight start - Add ReplaceComponents
         var components = traitPrototype.Components;
         var tagEntry = components.FirstOrDefault(kv => kv.Value.Component is TagComponent);
 
@@ -182,7 +183,8 @@ public sealed class TraitSystem : EntitySystem
             components = new ComponentRegistry(components.Where(kv => kv.Key != tagEntry.Key).ToDictionary(kv => kv.Key, kv => kv.Value));
         }
 
-        EntityManager.AddComponents(uid, components, traitPrototype.ReplaceComponents); // Hardlight: Added ReplaceComponents
+        EntityManager.AddComponents(uid, components, traitPrototype.ReplaceComponents); 
+        // Hardlight end
 
             // Starlight start
             var language = EntityManager.System<LanguageSystem>();
