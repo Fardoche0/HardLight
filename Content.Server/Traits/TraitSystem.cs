@@ -14,7 +14,7 @@ using Content.Shared.Movement.Systems; // HardLight
 using Content.Shared.Players;
 using Content.Shared.Preferences; // HardLight
 using Content.Shared.Roles;
-using Content.Shared.Tag;
+using Content.Shared.Tag; // Hardlight
 using Content.Shared.Traits;
 using Content.Shared.Whitelist;
 using Robust.Server.Player;
