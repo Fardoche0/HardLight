@@ -4,6 +4,7 @@ using Content.Shared.Tag;
 using Content.Shared.Traits;
 using Content.Shared.Whitelist;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.Traits;
 
