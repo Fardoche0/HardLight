@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Content.Server._NF.PublicTransit.Components;
@@ -856,6 +857,29 @@ namespace Content.Server.GameTicking
             }
         }
 
+        // Hardlight start
+        /// <summary>
+        ///     Goes through a list and deletes specified prototype entities.
+        /// </summary>
+        private void QueueDeleteEntities(params string[] prototypeIds)
+        {
+            var cleanupPrototypeIds = prototypeIds.ToHashSet();
+            var metaQuery = EntityQueryEnumerator<MetaDataComponent>();
+
+            while (metaQuery.MoveNext(out var entityUid, out var metadata))
+            {
+                var prototype = metadata.EntityPrototype;
+                if (prototype == null)
+                    continue;
+
+                if (cleanupPrototypeIds.Contains(prototype.ID))
+                {
+                    QueueDel(entityUid);
+                }
+            }
+        }
+        // Hardlight end
+
         /// <summary>
         ///     Cleanup that has to run to clear up anything from the previous round.
         ///     Stuff like wiping the previous map clean.
@@ -892,16 +916,31 @@ namespace Content.Server.GameTicking
 
             _gameMapManager.ClearSelectedMap();
 
-            // Hardlight start - Delete all rescue beacons from the previous round before the new map loads
-            var rescueBeaconQuery = EntityQueryEnumerator<RescueBeaconComponent>();
-            while (rescueBeaconQuery.MoveNext(out var beaconUid, out var beacon))
-            {
-                QueueDel(beaconUid);
-            }
-            // Hardlight end
+            // Hardlight - Delete specified entities before new map loads, items that have the potential to break round progression
+            QueueDeleteEntities(
+                "RescueBeacon",
+                "PinpointerNuclear", // todo: make old pinpointers have a defunct state instead of just deleting them for better rp.
+                "HandTeleporter",
+                "BoxFolderQmClipboard",
+                "DoorRemoteArmory",
+                "DoorRemoteCargo",
+                "DoorRemoteEngineering",
+                "DoorRemoteMedical",
+                "DoorRemoteResearch",
+                "DoorRemoteSecurity",
+                "DoorRemoteService",
+                "DoorRemoteCustom",
+                "DoorRemoteCommand",
+                "PinpointerMothership", // todo: same here as nuke pinpointer
+                "Demag",
+                "EncryptionKeySyndie", // The syndicate rotates their encryption! Your old ones won't work :3
+                "ShadowPortal", // Don't want shadow anomaly shenanigans on CC
+                "ShadowKudzu",
+                "ShadowKudzuWeak",
+                "ShadowTree"
+                );
 
             // Clear up any game rules.
-
             ClearGameRules();
             CurrentPreset = null;
 
