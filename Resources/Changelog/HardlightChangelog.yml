@@ -4656,3 +4656,13 @@ Entries:
         exactly next to you is receiving all those nanochats~
   id: 495
   time: '2026-06-12T22:13:51.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Fix
+      message: Fixed a few moth foods not having valid recipes.
+    - type: Fix
+      message: Fixed 2x2 machine frames not having recipes.
+    - type: Fix
+      message: Fixed widow packets not having a recipe.
+  id: 496
+  time: '2026-06-12T22:14:44.0000000+00:00'
